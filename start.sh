@@ -5,13 +5,12 @@ PORT=${PORT:-8000}
 CORES=$(nproc 2>/dev/null || echo 1)
 
 # Calculate the number of Gunicorn workers based on cores.
-# The formula (2 * cores) + 1 is a recommended starting point.
 WORKER_COUNT=$((2 * CORES + 1))
 
 echo "Starting Gunicorn with $WORKER_COUNT workers on port $PORT"
 
-# Start Gunicorn with the dynamic worker count
-gunicorn main:app \
+# Start Gunicorn with dynamic port
+exec gunicorn main:app \
     --workers $WORKER_COUNT \
     --worker-class uvicorn.workers.UvicornWorker \
     --bind 0.0.0.0:$PORT \
