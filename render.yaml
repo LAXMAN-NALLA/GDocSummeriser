@@ -27,5 +27,5 @@ services:
         fromSecret: true
       - key: AWS_REGION
         fromSecret: true # e.g., us-east-1
-      - key: PORT
-        value: 8000
+  
+
