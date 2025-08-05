@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: doc-analyzer
+    env: docker
+    # For production, consider a paid plan to prevent sleeping services
+    plan: free 
+    dockerfilePath: ./Dockerfile
+    # Set the region closest to your users for lower latency
+    region: oregon # Example: us-west-2
+
+    # Add a health check path. Render will check this endpoint after a deploy.
+    healthCheckPath: /health
+
+    # Automatically deploy on pushes to your main branch
+    autoDeploy: yes
+
+    # Environment variables are now references to secrets
+    # You will set the actual values in the Render Dashboard
+    envVars:
+      - key: GOOGLE_API_KEY
+        fromSecret: true
+      - key: GOOGLE_MODEL
+        value: gemini-1.5-flash
+      - key: AWS_ACCESS_KEY_ID
+        fromSecret: true
+      - key: AWS_SECRET_ACCESS_KEY
+        fromSecret: true
+      - key: AWS_REGION
+        fromSecret: true # e.g., us-east-1
+      - key: PORT
+        value: 8000

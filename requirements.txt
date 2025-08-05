@@ -1,0 +1,18 @@
+# FastAPI and Server
+fastapi
+uvicorn
+gunicorn
+python-multipart
+
+# AI Services
+google-generativeai
+boto3
+
+# Document and Data Processing
+pdfplumber
+openpyxl
+python-docx
+pandas
+
+# Environment variables (useful for local development)
+python-dotenv
